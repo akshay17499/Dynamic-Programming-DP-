@@ -1,0 +1,12 @@
+int minCostClimbingStairs(int* arr, int size) 
+{
+   int *dp = malloc(sizeof(int)*size);
+
+   dp[0] = arr[0];
+   dp[1] = arr[1];
+   for(int i=2;i<size;i++)
+   {
+    dp[i] = arr[i]+ (dp[i-1]>dp[i-2]?dp[i-2]:dp[i-1]);
+   }
+   return dp[size-1]>dp[size-2]?dp[size-2]:dp[size-1];
+}

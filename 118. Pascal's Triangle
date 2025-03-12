@@ -1,0 +1,30 @@
+int** generate(int size, int* returnSize, int** returnColumnSizes) 
+{
+    int **arr;
+    arr=malloc(size*sizeof(*arr));
+    *returnSize=size;
+    * returnColumnSizes = malloc(sizeof(int)*size);
+     for(int i = 0;i<size;i++)
+     (* returnColumnSizes)[i] =i+1; 
+    for(int i=0;i<size;i++)
+    {
+        *(arr+i)= malloc(sizeof(int)*(i+1));
+        if(i==0)
+        arr[0][0] = 1;
+        if(i==1)
+        {
+            arr[1][0]=1;
+            arr[1][1] = 1;
+        }
+        if(i>1)
+        {
+            for(int j= 1;j<i;j++)
+            {
+               arr[i][0] = 1;
+               arr[i][i] = 1;
+               arr[i][j] = arr[i-1][j]+arr[i-1][j-1];
+            }
+        }
+    }
+    return arr;
+}
